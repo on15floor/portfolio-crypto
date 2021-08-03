@@ -1,16 +1,6 @@
 from prettytable import PrettyTable
 
 
-# Считывание токена из файла
-def read_key_secret(filename: str):
-    with open(filename) as f:
-        text = f.read().strip().split('\n')
-        key = text[1]
-        secret = text[3]
-        return key, secret
-
-
-# Ошибка
 class SilentException(Exception):
     pass
 

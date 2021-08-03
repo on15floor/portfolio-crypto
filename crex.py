@@ -20,7 +20,7 @@ def get_pair_price(ticker='APC'):
         return pair_price_in_btc * btc_usd
 
 
-# Основной класс
+# Обертка API Crex
 class Crex:
     def __init__(self, api_key, api_secret):
         self.baseUrl = "https://api.crex24.com"
@@ -42,7 +42,7 @@ class Crex:
                                                              'X-CREX24-API-NONCE': str(nonce),
                                                              'X-CREX24-API-SIGN': sign})
 
-        # Возращаем результат
+        # Возвращаем результат
         obj = json.loads(response.text)
         return obj
 

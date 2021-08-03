@@ -19,7 +19,7 @@ def get_pair_price(ticker='BTC'):
         return pair_price['price']
 
 
-# Основной класс
+# Обертка API Binance
 class Binance:
     def __init__(self, api_key, api_secret):
         self.base_url = 'https://api.binance.com/'

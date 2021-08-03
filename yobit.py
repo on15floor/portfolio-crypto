@@ -11,15 +11,13 @@ from urllib.parse import urlparse
 
 # Каждый новый запрос к серверу должен содержать увеличенное число nonce в диапазоне 1-2147483646
 def get_nonce():
-    # Выбираем нужный файл
-    nonce_file = './yobit_nonce'
+    base_dir = os.path.dirname(os.path.abspath(__name__))
+    nonce_file = os.path.join(base_dir, 'yobit_nonce')
 
-    # Проверяем его существование
     if not os.path.exists(nonce_file):
-        with open(nonce_file, "w") as out:
-            out.write('1')
+        with open(nonce_file, "w") as f:
+            f.write('1')
 
-    # Добавляем 1 к значению
     with open(nonce_file, 'r+') as inp:
         nonce = int(inp.read())
         inp.seek(0)
@@ -40,7 +38,7 @@ def get_pair_price(ticker='btc'):
         return pair_price[pair]['avg']
 
 
-# Основной класс
+# Обертка API Yobit
 class Yobit:
     def __init__(self, api_key, api_secret):
         self.baseUrl = "https://yobit.net"
